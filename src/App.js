@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import React from "react";
+import Cart from "./Components/Cart";
+import GlobalStyles from "./Components/GlobalStyles";
+import Header from "./Components/Header";
+import { useGlobalContext } from "./Context";
+import Loading from "./Components/Loading";
+const App = () => {
+    const { state } = useGlobalContext();
+    const { isLoading } = state;
+    return (
+        <>
+            {isLoading ? (
+                <Loading />
+            ) : (
+                <>
+                    <GlobalStyles />
+                    <Header />
+                    <Cart />
+                </>
+            )}
+        </>
+    );
+};
 
 export default App;
