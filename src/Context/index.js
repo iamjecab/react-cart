@@ -15,15 +15,18 @@ const initialState = {
 const AppProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
     const getData = async () => {
-        // dispatch({ type: "SET_LOADING", payload: true });
-        const res = await fetch(url);
-        const data = await res.json();
-        // console.log(data);
-        dispatch({ type: "GET_DATA", payload: data });
-        dispatch({ type: "SET_LOADING", payload: false });
+        try {
+            dispatch({ type: "SET_LOADING", payload: true });
+            const res = await fetch(url);
+            const data = await res.json();
+            // console.log(data);
+            dispatch({ type: "GET_DATA", payload: data });
+            dispatch({ type: "SET_LOADING", payload: false });
+        } catch (error) {
+            console.log(error);
+        }
     };
 
-    console.log(state);
     useEffect(() => {
         getData();
     }, []);

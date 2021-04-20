@@ -1,5 +1,5 @@
 const reducer = (state, action) => {
-    const { isLoading, totalPrice, totalItems, cartData } = state;
+    const { cartData } = state;
 
     // Loading
     const { type, payload } = action;
